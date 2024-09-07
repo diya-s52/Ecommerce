@@ -22,6 +22,7 @@ This is a full-stack e-commerce application that allows users to browse products
 ## Live Demo
 
 You can view the live application at [Netlify URL](https://ecommerce-525.netlify.app/).
+Live link - https://ecommerce-525.netlify.app/
 
 ## Getting Started
 
