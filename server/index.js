@@ -25,6 +25,8 @@ app.use((err, req, res, next) => {
   });
 });
 
+const port = process.env.PORT || 8080;
+
 // Basic route
 app.get("/", async (req, res) => {
   res.status(200).json({
@@ -44,16 +46,12 @@ const startServer = async () => {
       throw new Error("MONGO_URI is not defined in environment variables.");
     }
 
-    await mongoose.connect(mongoURI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 10000, // Optional: Increase server selection timeout
-    });
+    await mongoose.connect(mongoURI); // No need for deprecated options
     console.log('Connected to MongoDB');
 
     // Start the server
-    app.listen(8080, () => {
-      console.log("Server started on port 8080");
+    app.listen(port, () => {
+      console.log(`Server started on port ${port}`);
     });
   } catch (error) {
     console.error('Error connecting to MongoDB:', error);
