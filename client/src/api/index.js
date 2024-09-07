@@ -1,20 +1,21 @@
 import axios from "axios";
 
+// Replace 'http://localhost:8080' with your live Render service URL
 const API = axios.create({
-  baseURL: "http://localhost:8080/api/",
+  baseURL: "https://ecommerce-9-oupf.onrender.com/api/", // Updated baseURL
 });
 
+// User Authentication
 export const UserSignUp = async (data) => await API.post("/user/signup", data);
 export const UserSignIn = async (data) => await API.post("/user/signin", data);
 
-//Products
+// Products
 export const getAllProducts = async (filter) =>
   await API.get(`/products?${filter}`);
 
 export const getProductDetails = async (id) => await API.get(`/products/${id}`);
 
-//Cart
-
+// Cart
 export const getCart = async (token) =>
   await API.get("/user/cart", {
     headers: { Authorization: `Bearer ${token}` },
@@ -30,8 +31,7 @@ export const deleteFromCart = async (token, data) =>
     headers: { Authorization: `Bearer ${token}` },
   });
 
-//Favourites
-
+// Favourites
 export const getFavourite = async (token) =>
   await API.get(`/user/favorite`, {
     headers: { Authorization: `Bearer ${token}` },
@@ -47,8 +47,7 @@ export const deleteFromFavourite = async (token, data) =>
     headers: { Authorization: `Bearer ${token}` },
   });
 
-//Orders
-
+// Orders
 export const placeOrder = async (token, data) =>
   await API.post(`/user/order/`, data, {
     headers: { Authorization: `Bearer ${token}` },
