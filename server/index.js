@@ -9,8 +9,14 @@ dotenv.config(); // Load environment variables
 
 const app = express();
 
-// Set up middleware
-app.use(cors());
+// CORS Configuration
+const corsOptions = {
+  origin: "https://ecommerce-525.netlify.app", // Netlify URL
+  methods: ["GET", "POST", "PUT", "DELETE"], // Allow these methods
+  credentials: true, // Enable if your server uses cookies or sessions
+};
+
+app.use(cors(corsOptions)); // Apply CORS with the specified options
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
 
